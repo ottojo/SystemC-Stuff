@@ -16,16 +16,16 @@ int sc_main(int /* argc */, char * /* argv */ []) {
     using Sample = sc_dt::sc_fixed<18, 8>;
 
     FiFo<Sample> inputFifo("in", 16, 30, SC_NS);
-    FiFo<Sample> outputFifo("in", 16, 30, SC_NS);
+    FiFo<Sample> outputFifo("out", 16, 30, SC_NS);
 
-    SampleProducer<Sample> p("sp", 10, SC_MS, 20);
+    SampleProducer<Sample> p("p", 0, SC_MS, 5);
     p.out.bind(inputFifo);
 
-    Filter<Sample> filter("filter");
+    Filter<Sample> filter("f");
     filter.in.bind(inputFifo);
     filter.out.bind(outputFifo);
 
-    SampleSink<Sample> sink("sink");
+    SampleSink<Sample> sink("s");
     sink.in.bind(outputFifo);
 
     sc_start();

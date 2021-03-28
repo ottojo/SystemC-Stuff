@@ -21,7 +21,9 @@ class SampleProducer : sc_module {
                 Sample s{(double) rand() / RAND_MAX};
                 std::cout << "[" << sc_time_stamp() << "] Producer " << name() << " writing sample " << s << std::endl;
                 out->write(s);
-                wait(send_delay, send_timeUnit);
+                if (send_delay > 0) {
+                    wait(send_delay, send_timeUnit);
+                }
             }
         }
 
