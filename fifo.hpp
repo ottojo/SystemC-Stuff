@@ -15,7 +15,7 @@
 #include "FifoOutAdapter.hpp"
 
 template<typename T>
-class FiFo : sc_module, public sc_fifo_blocking_in_if<T>, public sc_fifo_blocking_out_if<T> {
+class FiFo : sc_channel, public sc_fifo_blocking_in_if<T>, public sc_fifo_blocking_out_if<T> {
         hw_fifo<T> hwFifo;
         FifoOutAdapter<T> outAdapter{"outAdapter"};
         FifoInAdapter<T> inAdapter{"inAdapter"};

@@ -10,3 +10,6 @@ target_link_libraries(adder SystemC::systemc)
 
 add_executable(filter filter.main.cpp)
 target_link_libraries(filter SystemC::systemc)
+
+add_executable(demux demux.main.cpp)
+target_link_libraries(demux SystemC::systemc)
