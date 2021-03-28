@@ -24,11 +24,12 @@ class FifoOutAdapter : sc_module, public sc_fifo_blocking_in_if<T> {
         }
 
         T read() override {
+            ready = true;
             do {
                 wait(clock.posedge_event());
             } while (not valid);
             auto d = data.read();
-            ready = true;
+            ready = false;
             return d;
         }
 
